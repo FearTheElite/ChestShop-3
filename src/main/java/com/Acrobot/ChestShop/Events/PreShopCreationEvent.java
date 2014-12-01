@@ -4,6 +4,7 @@ import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+import org.bukkit.ChatColor;
 
 /**
  * Represents a state before shop is created
@@ -23,6 +24,8 @@ public class PreShopCreationEvent extends Event {
         this.creator = creator;
         this.sign = sign;
         this.signLines = signLines.clone();
+		for(int i=0; i < this.signLines.length; i++)
+			this.signLines[i] = ChatColor.stripColor(this.signLines[i]);
     }
 
     /**

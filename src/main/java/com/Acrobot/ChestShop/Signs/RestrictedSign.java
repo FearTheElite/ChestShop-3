@@ -14,6 +14,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.SignChangeEvent;
+import org.bukkit.ChatColor;
 
 import static com.Acrobot.ChestShop.Events.PreTransactionEvent.TransactionOutcome.SHOP_IS_RESTRICTED;
 import static com.Acrobot.ChestShop.Permission.ADMIN;
@@ -42,6 +43,11 @@ public class RestrictedSign implements Listener {
     public static void onSignChange(SignChangeEvent event) {
         String[] lines = event.getLines();
         Player player = event.getPlayer();
+		
+		lines[0] = ChatColor.stripColor(lines[0]);
+		lines[1] = ChatColor.stripColor(lines[1]);
+		lines[2] = ChatColor.stripColor(lines[2]);
+		lines[3] = ChatColor.stripColor(lines[3]);
 
         if (isRestricted(lines)) {
             if (!hasPermission(player, lines)) {
@@ -119,7 +125,7 @@ public class RestrictedSign implements Listener {
     }
 
     public static boolean isRestricted(String[] lines) {
-        return lines[0].equalsIgnoreCase("[restricted]");
+        return lines[0].equalsIgnoreCase(ChatColor.stripColor("[restricted]"));
     }
 
     public static boolean isRestricted(Sign sign) {
@@ -152,7 +158,7 @@ public class RestrictedSign implements Listener {
         }
 
         for (String line : lines) {
-            if (p.hasPermission(Permission.GROUP.toString() + line)) {
+            if (p.hasPermission(Permission.GROUP.toString() + ChatColor.stripColor(line))) {
                 return true;
             }
         }

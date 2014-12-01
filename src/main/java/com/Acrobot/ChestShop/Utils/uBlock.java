@@ -6,6 +6,7 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.Chest;
 import org.bukkit.block.Sign;
+import org.bukkit.ChatColor;
 
 /**
  * @author Acrobot
@@ -67,7 +68,7 @@ public class uBlock {
             Sign sign = (Sign) faceBlock.getState();
 
             if (ChestShopSign.isValid(sign) && signIsAttachedToBlock(sign, block)) {
-                if (!sign.getLine(0).equals(originalName)) {
+                if (!ChatColor.stripColor(sign.getLine(0)).equals(originalName)) {
                     return sign;
                 } else if (ownerShopSign == null) {
                     ownerShopSign = sign;

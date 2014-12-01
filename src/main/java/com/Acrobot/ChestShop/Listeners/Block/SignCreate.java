@@ -10,6 +10,7 @@ import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.ChatColor;
 import org.bukkit.event.block.SignChangeEvent;
 
 /**
@@ -21,6 +22,11 @@ public class SignCreate implements Listener {
     public static void onSignChange(SignChangeEvent event) {
         Block signBlock = event.getBlock();
         String[] line = event.getLines();
+		
+		line[0] = ChatColor.stripColor(line[0]);
+		line[1] = ChatColor.stripColor(line[1]);
+		line[2] = ChatColor.stripColor(line[2]);
+		line[3] = ChatColor.stripColor(line[3]);
 
         if (!BlockUtil.isSign(signBlock)) {
             return;
@@ -38,7 +44,7 @@ public class SignCreate implements Listener {
         }
 
         for (byte i = 0; i < event.getLines().length; ++i) {
-            event.setLine(i, preEvent.getSignLine(i));
+            event.setLine(i, ChatColor.stripColor(preEvent.getSignLine(i)));
         }
 
         ShopCreatedEvent postEvent = new ShopCreatedEvent(preEvent.getPlayer(), preEvent.getSign(), uBlock.findConnectedChest(preEvent.getSign()), preEvent.getSignLines());

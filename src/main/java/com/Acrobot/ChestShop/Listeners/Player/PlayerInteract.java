@@ -27,6 +27,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.ChatColor;
 
 import java.util.UUID;
 
@@ -112,10 +113,10 @@ public class PlayerInteract implements Listener {
     }
 
     private static PreTransactionEvent preparePreTransactionEvent(Sign sign, Player player, Action action) {
-        String name = sign.getLine(NAME_LINE);
-        String quantity = sign.getLine(QUANTITY_LINE);
-        String prices = sign.getLine(PRICE_LINE);
-        String material = sign.getLine(ITEM_LINE);
+        String name = ChatColor.stripColor(sign.getLine(NAME_LINE));
+        String quantity = ChatColor.stripColor(sign.getLine(QUANTITY_LINE));
+        String prices = ChatColor.stripColor(sign.getLine(PRICE_LINE));
+        String material = ChatColor.stripColor(sign.getLine(ITEM_LINE));
 
         String ownerName = NameManager.getFullUsername(name);
         UUID uuid = NameManager.getUUID(ownerName);

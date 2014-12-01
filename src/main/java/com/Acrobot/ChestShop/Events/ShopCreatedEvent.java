@@ -5,8 +5,10 @@ import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+import org.bukkit.ChatColor;
 
 import javax.annotation.Nullable;
+
 
 /**
  * Represents a state after shop creation
@@ -27,6 +29,8 @@ public class ShopCreatedEvent extends Event {
         this.sign = sign;
         this.chest = chest;
         this.signLines = signLines.clone();
+		for(int i=0; i < this.signLines.length; i++)
+			this.signLines[i] = ChatColor.stripColor(this.signLines[i]);
     }
 
     /**

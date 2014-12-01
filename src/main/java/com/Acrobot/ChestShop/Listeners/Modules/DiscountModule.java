@@ -9,6 +9,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.ChatColor;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -50,7 +51,7 @@ public class DiscountModule implements Listener {
 
         Player client = event.getClient();
 
-        if (!PriceUtil.hasBuyPrice(event.getSign().getLine(PRICE_LINE))) {
+        if (!PriceUtil.hasBuyPrice(ChatColor.stripColor(event.getSign().getLine(PRICE_LINE)))) {
             return;
         }
 

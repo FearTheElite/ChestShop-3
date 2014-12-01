@@ -9,6 +9,7 @@ import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
 import org.bukkit.block.DoubleChest;
 import org.bukkit.block.Sign;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
@@ -40,7 +41,7 @@ public class ChestShopSign {
     }
 
     public static boolean isAdminShop(Sign sign) {
-        return isAdminShop(sign.getLine(NAME_LINE));
+        return isAdminShop(ChatColor.stripColor(sign.getLine(NAME_LINE)));
     }
 
     public static boolean isValid(Sign sign) {
@@ -48,7 +49,7 @@ public class ChestShopSign {
     }
 
     public static boolean isValid(String[] line) {
-        return isValidPreparedSign(line) && (line[PRICE_LINE].toUpperCase().contains("B") || line[PRICE_LINE].toUpperCase().contains("S")) && !line[NAME_LINE].isEmpty();
+        return isValidPreparedSign(line) && (ChatColor.stripColor(line[PRICE_LINE]).toUpperCase().contains("B") || ChatColor.stripColor(line[PRICE_LINE]).toUpperCase().contains("S")) && !ChatColor.stripColor(line[NAME_LINE]).isEmpty();
     }
 
     public static boolean isValid(Block sign) {
@@ -81,12 +82,12 @@ public class ChestShopSign {
         if (player == null) return false;
         if (sign == null) return true;
 
-        return NameManager.canUseName(player, sign.getLine(NAME_LINE));
+        return NameManager.canUseName(player, ChatColor.stripColor(sign.getLine(NAME_LINE)));
     }
 
     public static boolean isValidPreparedSign(String[] lines) {
         for (int i = 0; i < 4; i++) {
-            if (!SHOP_SIGN_PATTERN[i].matcher(lines[i]).matches()) {
+            if (!SHOP_SIGN_PATTERN[i].matcher(ChatColor.stripColor(lines[i])).matches()) {
                 return false;
             }
         }

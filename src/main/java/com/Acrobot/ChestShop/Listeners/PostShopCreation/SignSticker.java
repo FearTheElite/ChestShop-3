@@ -5,6 +5,7 @@ import com.Acrobot.ChestShop.Configuration.Properties;
 import com.Acrobot.ChestShop.Events.ShopCreatedEvent;
 import com.Acrobot.ChestShop.Signs.ChestShopSign;
 import com.Acrobot.ChestShop.Utils.uBlock;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -25,7 +26,7 @@ public class SignSticker implements Listener {
             return;
         }
 
-        if (ChestShopSign.isAdminShop(event.getSign().getLine(NAME_LINE))) {
+        if (ChestShopSign.isAdminShop(ChatColor.stripColor(event.getSign().getLine(NAME_LINE)))) {
             return;
         }
 

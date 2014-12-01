@@ -11,6 +11,7 @@ import com.Acrobot.ChestShop.UUIDs.NameManager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.ChatColor;
 
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -30,7 +31,7 @@ public class ShopRefundListener implements Listener {
             return;
         }
 
-        String ownerName = NameManager.getFullUsername(event.getSign().getLine(NAME_LINE));
+        String ownerName = NameManager.getFullUsername(ChatColor.stripColor(event.getSign().getLine(NAME_LINE)));
         UUID owner = NameManager.getUUID(ownerName);
 
         CurrencyAddEvent currencyEvent = new CurrencyAddEvent(BigDecimal.valueOf(refundPrice), owner, event.getSign().getWorld());

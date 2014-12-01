@@ -12,6 +12,7 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
+import org.bukkit.ChatColor;
 
 /**
  * @author Acrobot
@@ -80,7 +81,7 @@ public class Security {
                 continue;
             }
 
-            if (!sign.getLine(ChestShopSign.NAME_LINE).equals(shortName)) {
+            if (!ChatColor.stripColor(sign.getLine(ChestShopSign.NAME_LINE)).equals(shortName)) {
                 return true;
             }
         }
